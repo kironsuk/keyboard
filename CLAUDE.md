@@ -12,9 +12,10 @@ QMK firmware configurations for two custom split ergonomic keyboards:
 
 - `corne/keymap.json` — Source of truth for the Corne keymap (QMK Configurator JSON)
 - `corne/keymap.c` — Compiled C keymap with per-layer RGB color code
-- `corne/config.h` — RGBLIGHT_LAYERS config, split keyboard settings
+- `corne/config.h` — RGBLIGHT config, split keyboard settings
 - `corne/rules.mk` — Build flags (RGBLIGHT_ENABLE=yes)
 - `corne/firmware.hex` — Latest compiled firmware
+- `corne/layout.txt` — ASCII visual reference for all layers
 - `moonlander/source/` — Moonlander keymap source (keymap.c, config.h, rules.mk)
 - `moonlander/firmware.bin` — Latest compiled firmware
 
@@ -40,23 +41,25 @@ Oryx layout: https://configure.zsa.io/moonlander/layouts/65yQL/WOAdM/0
 
 ## Architecture
 
-### Layer System (6 layers, both keyboards)
-- **Layer 0**: Base QWERTY with home row mods (mod-tap)
-- **Layer 1**: Number row (1–0)
-- **Layer 2**: Symbols and special characters
-- **Layer 3**: Function keys (F1–F20)
-- **Layer 4**: Arrow keys, navigation, clipboard
-- **Layer 5**: RGB lighting controls, reset
+### Corne Layer System (6 layers)
+- **Layer 0**: Base QWERTY with bottom row mods (mod-tap on Z/X/C/F and M/,/.//)
+- **Layer 1**: Numbers on both top and home rows
+- **Layer 2**: Symbols — brackets/operators on top (`` ` { } < > | - + ( ) \ ``), shifted symbols on home (`! @ # $ % ^ & * [ ] =`)
+- **Layer 3**: Function keys — F1–F10 on top, F11–F20 on home
+- **Layer 4**: Navigation — clipboard (undo/cut/copy/paste) on home, arrows on right home, Home/PgDn/PgUp/End on bottom
+- **Layer 5**: RGB lighting controls, bootloader reset
 
 ### Key QMK Features
-- **Mod-tap (`MT`)**: Hold for modifier, tap for keypress — home row mods on layers 0 and 2
-- **Layer switching**: `MO()` momentary, `DF()` default, `TO()` toggle
-- **RGBLIGHT_LAYERS** (Corne): Per-layer LED colors (cyan/blue/magenta/green/orange/red)
+- **Mod-tap (`MT`)**: Hold for modifier, tap for keypress — bottom row mods on layer 0
+- **Layer switching**: `MO()` momentary, `DF()` default
+- **Per-layer RGB hue** (Corne): Only hue changes per layer (cyan/blue/magenta/green/orange/red); brightness, saturation, and effects persist across layers via `rgblight_sethsv_noeeprom`
 - **Tap dance** (Moonlander only): 12 dances with single/hold/double/triple tap
 - **RGB matrix** (Moonlander only): Per-layer LED schemes via `ledmap`, 72 LEDs
 
 ### QMK Version Notes
-- QMK 0.23.2 uses older `RGB_` keycodes (not newer `UG_` prefix)
+- QMK 0.23.2 uses older `RGB_` keycodes (not newer `UG_` prefix) — replace `UG_` with `RGB_` equivalents when converting from JSON
+- Strip `ANY()` wrappers from mod-tap keys in JSON exports (e.g., `ANY(MT(...))` → `MT(...)`)
+- When updating `keymap.c`, only replace the `keymaps[]` array — preserve the RGB color code below it
 - Corne uses `RGBLIGHT_ENABLE`, Moonlander uses `RGB_MATRIX_ENABLE`
 
 ### Moonlander Config
