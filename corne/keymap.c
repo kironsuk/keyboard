@@ -9,37 +9,31 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	[5] = LAYOUT_split_3x6_3(QK_BOOT, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_TRNS, RGB_TOG, RGB_MOD, RGB_HUI, RGB_SAI, RGB_VAI, RGB_SPI, RGB_M_P, RGB_M_B, RGB_M_R, RGB_M_K, RGB_M_G, RGB_M_T, KC_NO, RGB_RMOD, RGB_HUD, RGB_SAD, RGB_VAD, RGB_SPD, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, DF(0), DF(0), DF(0), KC_NO, KC_NO, KC_NO)
 };
 
-// Per-layer RGB lighting colors (HSV)
-const rgblight_segment_t PROGMEM layer0_colors[] = RGBLIGHT_LAYER_SEGMENTS({0, 54, HSV_CYAN});
-const rgblight_segment_t PROGMEM layer1_colors[] = RGBLIGHT_LAYER_SEGMENTS({0, 54, HSV_BLUE});
-const rgblight_segment_t PROGMEM layer2_colors[] = RGBLIGHT_LAYER_SEGMENTS({0, 54, HSV_MAGENTA});
-const rgblight_segment_t PROGMEM layer3_colors[] = RGBLIGHT_LAYER_SEGMENTS({0, 54, HSV_GREEN});
-const rgblight_segment_t PROGMEM layer4_colors[] = RGBLIGHT_LAYER_SEGMENTS({0, 54, HSV_ORANGE});
-const rgblight_segment_t PROGMEM layer5_colors[] = RGBLIGHT_LAYER_SEGMENTS({0, 54, HSV_RED});
+// Per-layer hue values (only hue changes per layer; brightness/saturation/effects persist)
+static const uint8_t layer_hues[] = {
+    128,  // Layer 0: Cyan
+    170,  // Layer 1: Blue
+    213,  // Layer 2: Magenta
+    85,   // Layer 3: Green
+    28,   // Layer 4: Orange
+    0,    // Layer 5: Red
+};
 
-const rgblight_segment_t* const PROGMEM my_rgb_layers[] = RGBLIGHT_LAYERS_LIST(
-    layer0_colors,
-    layer1_colors,
-    layer2_colors,
-    layer3_colors,
-    layer4_colors,
-    layer5_colors
-);
+void set_layer_color(uint8_t layer) {
+    rgblight_sethsv_noeeprom(layer_hues[layer], rgblight_get_sat(), rgblight_get_val());
+}
 
 void keyboard_post_init_user(void) {
-    rgblight_layers = my_rgb_layers;
+    rgblight_sethsv(128, 255, 120); // Start with Cyan, full sat, default brightness
 }
 
 layer_state_t default_layer_state_set_user(layer_state_t state) {
-    rgblight_set_layer_state(0, layer_state_cmp(state, 0));
+    set_layer_color(get_highest_layer(state));
     return state;
 }
 
 layer_state_t layer_state_set_user(layer_state_t state) {
-    rgblight_set_layer_state(1, layer_state_cmp(state, 1));
-    rgblight_set_layer_state(2, layer_state_cmp(state, 2));
-    rgblight_set_layer_state(3, layer_state_cmp(state, 3));
-    rgblight_set_layer_state(4, layer_state_cmp(state, 4));
-    rgblight_set_layer_state(5, layer_state_cmp(state, 5));
+    uint8_t layer = get_highest_layer(state | default_layer_state);
+    set_layer_color(layer);
     return state;
 }
