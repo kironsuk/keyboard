@@ -44,7 +44,7 @@ Bottom row mod-taps (Layer 0):
 | Left 2 | Z | Shift |
 | Left 3 | X | Ctrl |
 | Left 4 | C | Alt |
-| Left 5 | F | Gui |
+| Left 5 | V | Gui |
 | Right 2 | M | Gui |
 | Right 3 | , | Alt |
 | Right 4 | . | Ctrl |
