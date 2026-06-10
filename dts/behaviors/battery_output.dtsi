@@ -1,0 +1,9 @@
+/ {
+    behaviors {
+        batt: battery_output {
+            compatible = "zmk,behavior-battery-output";
+            #binding-cells = <0>;
+            display-name = "Battery Output";
+        };
+    };
+};

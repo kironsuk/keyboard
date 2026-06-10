@@ -1,0 +1,7 @@
+# SPDX-License-Identifier: MIT
+
+description: Battery percentage output behavior
+
+compatible: "zmk,behavior-battery-output"
+
+include: zero_param.yaml

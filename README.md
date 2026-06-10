@@ -1,11 +1,16 @@
 # Keyboard Firmware
 
-QMK firmware configurations for two custom split ergonomic keyboards.
+Firmware configurations for custom split ergonomic keyboards.
 
 ## Directory Structure
 
 ```
 keyboard/
+  build.yaml           ZMK GitHub Actions build matrix for Bluetooth Corne
+  corne4.1Bluetooth/  ZMK user config for Bluetooth Corne 4.1
+    corne.keymap         Kiron's Corne layout ported to ZMK, no lighting layer
+    corne.conf           ZMK keyboard name and sleep settings
+    west.yml             ZMK manifest
   corne/              # Corne (crkbd/rev1) - compact 3x6+3 split
     keymap.json         Source of truth (QMK Configurator JSON)
     keymap.c            Compiled C keymap with per-layer RGB colors
@@ -24,7 +29,40 @@ keyboard/
     README.md           ZSA's build instructions
 ```
 
-## Corne Layout
+## Bluetooth Corne 4.1 / ZMK
+
+The Bluetooth Corne config lives in `corne4.1Bluetooth/` and is built by the root
+`build.yaml` plus `.github/workflows/zmk-build.yml`.
+
+Build targets:
+
+| Board | Shield | Output |
+|-------|--------|--------|
+| nice_nano | corne_left | Left half UF2 |
+| nice_nano | corne_right | Right half UF2 |
+
+The keymap keeps the standard Corne layout minus the lighting layer:
+
+| Layer | Purpose | Activate |
+|-------|---------|----------|
+| 0 | Base QWERTY with bottom row mods | Default |
+| 1 | Numbers on top and home rows | Hold left thumb NUM |
+| 2 | Symbols | Hold left thumb SYM |
+| 3 | Function keys and bootloader | NUM+FN or NAV+FN |
+| 4 | Navigation and Bluetooth profile controls | Hold right thumb NAV |
+
+Notes:
+
+- There is no RGB/backlight layer.
+- The nav layer top row has Bluetooth controls: clear bonds, select profiles 0-4,
+  toggle USB/Bluetooth output, previous/next profile, and output battery percent.
+- The stock ZMK Corne shield has 42 key positions. If a Corne 4.1 vendor shield exposes extra physical keys, leave those positions as `&none`.
+
+To build, push this repo to GitHub and run the `zmk-build` workflow, then
+download the `firmware` artifact. Flash each half by putting it into bootloader
+mode and copying the matching UF2 file to the mounted drive.
+
+## Wired QMK Corne Layout
 
 6 layers, bottom row mods. Hold a bottom row key for the modifier, tap for the letter.
 
@@ -54,7 +92,7 @@ See `corne/layout.txt` for the full visual layout of every layer.
 
 RGB settings (brightness, saturation, effects) persist across all layers — only the hue changes per layer.
 
-## Making Changes to the Corne Keymap
+## Making Changes to the Wired QMK Corne Keymap
 
 ### Quick reference
 

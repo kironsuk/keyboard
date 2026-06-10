@@ -1,0 +1,5 @@
+DT_COMPAT_ZMK_BEHAVIOR_BATTERY_OUTPUT := zmk,behavior-battery-output
+
+config ZMK_BEHAVIOR_BATTERY_OUTPUT
+    bool
+    default $(dt_compat_enabled,$(DT_COMPAT_ZMK_BEHAVIOR_BATTERY_OUTPUT))

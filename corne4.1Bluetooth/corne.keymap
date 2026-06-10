@@ -1,0 +1,79 @@
+#include <behaviors.dtsi>
+#include <dt-bindings/zmk/keys.h>
+#include <dt-bindings/zmk/bt.h>
+#include <dt-bindings/zmk/outputs.h>
+#include <behaviors/battery_output.dtsi>
+
+#define BASE 0
+#define NUM  1
+#define SYM  2
+#define FN   3
+#define NAV  4
+
+/ {
+    behaviors {
+        brm: bottom_row_mods {
+            compatible = "zmk,behavior-hold-tap";
+            label = "BOTTOM_ROW_MODS";
+            #binding-cells = <2>;
+            flavor = "tap-preferred";
+            tapping-term-ms = <200>;
+            quick-tap-ms = <150>;
+            bindings = <&kp>, <&kp>;
+        };
+    };
+
+    keymap {
+        compatible = "zmk,keymap";
+
+        base_layer {
+            display-name = "Base";
+            bindings = <
+                &kp TAB      &kp Q             &kp W             &kp E            &kp R            &kp T             &kp Y       &kp U             &kp I              &kp O             &kp P             &kp BSLH
+                &kp ESC      &kp A             &kp S             &kp D            &kp F            &kp G             &kp H       &kp J             &kp K              &kp L             &kp SEMI          &kp SQT
+                &kp LSHFT    &brm LSHFT Z      &brm LCTRL X      &brm LALT C      &brm LGUI V      &kp B             &kp N       &brm RGUI M      &brm RALT COMMA    &brm RCTRL DOT    &brm RSHFT FSLH   &kp RSHFT
+                                                            &mo NUM          &mo SYM         &kp BSPC          &kp RET     &kp SPACE         &mo NAV
+            >;
+        };
+
+        numbers_layer {
+            display-name = "Numbers";
+            bindings = <
+                &trans       &kp N1            &kp N2            &kp N3           &kp N4           &kp N5            &kp N6      &kp N7            &kp N8             &kp N9            &kp N0            &trans
+                &trans       &kp N1            &kp N2            &kp N3           &kp N4           &kp N5            &kp N6      &kp N7            &kp N8             &kp N9            &kp N0            &trans
+                &trans       &trans            &trans            &trans           &trans           &trans            &trans      &trans            &trans             &trans            &trans            &trans
+                                                            &trans          &trans          &trans           &trans     &trans           &mo FN
+            >;
+        };
+
+        symbols_layer {
+            display-name = "Symbols";
+            bindings = <
+                &trans       &kp GRAVE         &kp LBRC          &kp RBRC         &kp LESS_THAN    &kp GREATER_THAN &kp PIPE    &kp MINUS        &kp PLUS           &kp LPAR          &kp RPAR          &kp BSLH
+                &trans       &kp EXCL          &kp AT            &kp HASH         &kp DLLR         &kp PRCNT         &kp CARET   &kp AMPS          &kp ASTRK          &kp LBKT          &kp RBKT          &kp EQUAL
+                &trans       &trans            &trans            &trans           &trans           &trans            &trans      &trans            &trans             &trans            &trans            &trans
+                                                            &trans          &trans          &trans           &trans     &trans           &trans
+            >;
+        };
+
+        function_layer {
+            display-name = "Function";
+            bindings = <
+                &trans       &kp F1            &kp F2            &kp F3           &kp F4           &kp F5            &kp F6      &kp F7            &kp F8             &kp F9            &kp F10           &bootloader
+                &trans       &kp F11           &kp F12           &kp F13          &kp F14          &kp F15           &kp F16     &kp F17           &kp F18            &kp F19           &kp F20           &trans
+                &trans       &trans            &trans            &trans           &trans           &trans            &trans      &trans            &trans             &trans            &trans            &trans
+                                                            &trans          &trans          &trans           &trans     &trans           &trans
+            >;
+        };
+
+        navigation_layer {
+            display-name = "Nav";
+            bindings = <
+                &trans       &bt BT_CLR        &bt BT_SEL 0      &bt BT_SEL 1     &bt BT_SEL 2     &bt BT_SEL 3      &bt BT_SEL 4 &out OUT_TOG     &bt BT_PRV        &bt BT_NXT       &batt            &trans
+                &trans       &kp K_UNDO        &kp K_CUT         &kp K_COPY       &kp K_PASTE      &none             &kp LEFT    &kp DOWN          &kp UP            &kp RIGHT         &trans           &trans
+                &trans       &trans            &trans            &trans           &trans           &trans            &kp HOME    &kp PGDN          &kp PGUP          &kp END           &none            &trans
+                                                            &mo FN           &trans          &trans           &trans     &trans           &trans
+            >;
+        };
+    };
+};
