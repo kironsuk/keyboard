@@ -46,7 +46,7 @@ A photo of the actual PCB revealed the "Bluetooth Corne 4.1" Kiron bought is a Y
 
 The layout was recreated in Vial instead. `corne/corne4.1vial/kiron-layout.vil` is the corrected source of truth (fixes vs `Initial.vil`: left bottom-row mods were off by one — C/V positions had TD(3)/TD(4); symbols layer restored to old layout using the two extra inner-column keys for `|` and `^`; MO(0) no-ops made transparent; nav layer got Home/PgDn/PgUp/End back). Kiron loaded it onto the board via the Vial web app on 2026-06-09. CLI alternative: `vitaly load -f corne/corne4.1vial/kiron-layout.vil` (binary verified at /tmp/vitaly.tar.xz, install pending user approval).
 
-Open thread: Kiron wants true Bluetooth (no dongle). Vendor firmware only documents 2.4GHz dongle mode; investigating whether a BT mode exists.
+Bluetooth investigation, concluded 2026-06-09: the keyboard has NO Bluetooth support as shipped. Evidence: (1) the Vial definition pulled from the device over raw HID (VID 0x55D4 "Pilot", PID 0x0461 "W-CORNE") contains no custom keycodes — unlike YMDK/Cornix cousins which expose BT0/BT1/BT2/Switch Output in Vial's User tab; (2) BLE scans across keyboard power cycles with the dongle unplugged show the keyboard never advertises (BLE devices found nearby were Tractive pet trackers and other household gear). Wireless is the proprietary 2.4GHz dongle link only; wired USB-C also works. If Kiron ever wants true BT: ask YIVU support about a BT firmware for the TNT-BT_M V2 module, or build a real nice!nano ZMK Corne (config in this repo is ready). Useful tooling from this session: `vitaly` CLI (~/.local/bin) loads/saves Vial layouts headlessly.
 
 #### Prior ZMK handoff status, 2026-06-09 (afternoon) — superseded, kept for context
 
