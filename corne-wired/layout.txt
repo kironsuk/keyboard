@@ -65,33 +65,41 @@ Layer 3 — Function Keys (Green)                    Activate: MO(1) + MO(3) or 
                                   DF(5) = switch to RGB layer (right index, bottom row)
 
 
-Layer 4 — Navigation (Orange)                      Activate: hold right thumb MO(4)
-─────────────────────────────
+Layer 4 — Nav & Chords (Orange)                    Activate: hold right thumb MO(4)
+───────────────────────────────
 ┌──────┬──────┬──────┬──────┬──────┬──────┐   ┌──────┬──────┬──────┬──────┬──────┬──────┐
-│  ▽   │      │      │      │      │      │   │      │      │      │      │      │  ▽   │
+│  ▽   │      │      │ ⌘⇧5  │ ⌘⇧3  │      │   │      │      │      │      │      │  ▽   │
+│      │      │      │ shot │ shot │      │   │      │      │      │      │      │      │
+│      │      │      │ menu │ full │      │   │      │      │      │      │      │      │
 ├──────┼──────┼──────┼──────┼──────┼──────┤   ├──────┼──────┼──────┼──────┼──────┼──────┤
-│  ▽   │ Undo │ Cut  │ Copy │Paste │      │   │  ←   │  ↓   │  ↑   │  →   │  ▽   │  ▽   │
+│  ▽   │⌃⌘Spc │ ⌘⇧. │ ⌘⇧4  │⌘⌥⇧V  │ ⌃⌘Q  │   │  ←   │  ↓   │  ↑   │  →   │      │  ▽   │
+│      │emoji │hidden│ shot │paste-│ lock │   │      │      │      │      │      │      │
+│      │picker│files │region│match │screen│   │      │      │      │      │      │      │
 ├──────┼──────┼──────┼──────┼──────┼──────┤   ├──────┼──────┼──────┼──────┼──────┼──────┤
-│  ▽   │  ▽   │  ▽   │  ▽   │  ▽   │  ▽   │   │ Home │ PgDn │ PgUp │ End  │      │  ▽   │
+│  ▽   │  ▽   │  ▽   │  ▽   │  ▽   │  ▽   │   │  ▽   │  ▽   │  ▽   │  ▽   │  ▽   │  ▽   │
 │      │ Shift│ Ctrl │ Alt  │ Gui  │      │   │      │ Gui  │ Alt  │ Ctrl │ Shift│      │
 └──────┴──────┴──────┼──────┼──────┼──────┤   ├──────┼──────┼──────┼──────┴──────┴──────┘
                      │MO(3) │  ▽   │  ▽   │   │  ▽   │  ▽   │ ░░░░ │
                      └──────┴──────┴──────┘   └──────┴──────┴──────┘
-                                                         MO(4)+MO(3) = Layer 3
+   Left hand = chords · Right hand = vim arrows · MO(4)+MO(3) = Layer 3
+   ⌘⌥⇧V = "paste & match style" (Apple apps; some apps use ⌘⇧V)
+   Window tiling stays native: fn+Ctrl+arrows, done by hand
 
 
-Layer 5 — RGB Controls (Red)                       Activate: DF(5) from Layer 3
-────────────────────────────
+Layer 5 — System & Media (Red)                     Activate: DF(5) from Layer 3
+──────────────────────────────
 ┌──────┬──────┬──────┬──────┬──────┬──────┐   ┌──────┬──────┬──────┬──────┬──────┬──────┐
-│      │ BOOT │      │      │      │      │   │      │      │      │      │      │  ▽   │
+│      │ BOOT │ RGB  │ Mode │ Hue+ │ Brt+ │   │ ☼ -  │ ☼ +  │  ⏮   │  ⏯   │  ⏭   │      │
+│      │flash │ Tog  │ cycle│      │      │   │ dim  │bright│ prev │ play │ next │      │
 ├──────┼──────┼──────┼──────┼──────┼──────┤   ├──────┼──────┼──────┼──────┼──────┼──────┤
-│ Tog  │ Mode+│ Hue+ │ Sat+ │ Brt+ │ Spd+ │   │Plain │Breath│Rainbw│Knight│ Grad │Twinkl│
+│      │      │      │ Hue- │ Brt- │      │   │ Mute │ Vol- │ Vol+ │      │      │      │
 ├──────┼──────┼──────┼──────┼──────┼──────┤   ├──────┼──────┼──────┼──────┼──────┼──────┤
-│      │ Mode-│ Hue- │ Sat- │ Brt- │ Spd- │   │      │      │      │      │      │      │
+│      │      │      │      │      │      │   │      │      │      │      │      │      │
 └──────┴──────┴──────┼──────┼──────┼──────┤   ├──────┼──────┼──────┼──────┴──────┴──────┘
                      │DF(0) │DF(0) │DF(0) │   │      │      │      │
                      └──────┴──────┴──────┘   └──────┴──────┴──────┘
-              All three left thumbs return to base layer
+   RGB slimmed to 6 controls, all off the outer columns · media + screen
+   brightness fill the freed space · all three left thumbs return to base
 
 
 Legend
@@ -99,9 +107,9 @@ Legend
 ▽  = transparent (falls through to layer below)
 ∅  = no-op (dead key, nothing happens)
 ░░ = layer is active from this key (held)
-Brt = brightness (value)   Sat = saturation   Spd = speed
-BOOT = enter bootloader for flashing
-Tog = toggle RGB on/off
+Brt = brightness (value)   Hue = color   Mode = cycle RGB effect
+BOOT = enter bootloader for flashing   Tog = toggle RGB on/off
+☼ -/☼ + = screen brightness   ⏮ ⏯ ⏭ = media prev/play/next
 
 Bottom row mod-taps (Layer 0): hold for modifier, tap for letter.
 On transparent layers, bottom row mods fall through from Layer 0.
@@ -116,7 +124,7 @@ Goal: drop the outer pinky column on each side (3x6+3 → 3x5+3).
 Outer-column base keys are already re-homed so nothing is stranded:
   Tab, Esc → Layer 1   ·   \ → Layer 2   ·   ' and " → Layer 2
   Left/Right Shift → bottom-row mod-taps on Z and /
-Layers 1–4 are now clear of the outer columns.
+Layers 1–5 are now clear of the outer columns (Layer 5 RGB was rebuilt onto
+inner keys, so the outer-column RGB Toggle/Twinkle blockers are gone).
 Still to relocate before switching to LAYOUT_split_3x5_3:
-  Layer 5 — RGB Toggle (outer-left home) and Twinkle effect (outer-right home).
   Base layer outer columns (rebuilt when the macro changes).
