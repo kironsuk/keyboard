@@ -25,7 +25,7 @@ Layer 1 — Numbers (Blue)                          Activate: hold left thumb MO
 ┌──────┬──────┬──────┬──────┬──────┬──────┐   ┌──────┬──────┬──────┬──────┬──────┬──────┐
 │  ▽   │  1   │  2   │  3   │  4   │  5   │   │  6   │  7   │  8   │  9   │  0   │  ▽   │
 ├──────┼──────┼──────┼──────┼──────┼──────┤   ├──────┼──────┼──────┼──────┼──────┼──────┤
-│  ▽   │ Esc  │ Tab  │  ∅   │  ∅   │  ∅   │   │  ∅   │  {   │  }   │  '   │  "   │  ▽   │
+│  ▽   │ Esc  │ Tab  │  [   │  ]   │  <   │   │  >   │  {   │  }   │  (   │  )   │  ▽   │
 ├──────┼──────┼──────┼──────┼──────┼──────┤   ├──────┼──────┼──────┼──────┼──────┼──────┤
 │  ▽   │  ▽   │  ▽   │  ▽   │  ▽   │  ▽   │   │  ▽   │  ▽   │  ▽   │  ▽   │  ▽   │  ▽   │
 │      │ Shift│ Ctrl │ Alt  │ Gui  │      │   │      │ Gui  │ Alt  │ Ctrl │ Shift│      │
@@ -38,16 +38,16 @@ Layer 1 — Numbers (Blue)                          Activate: hold left thumb MO
 Layer 2 — Symbols (Magenta)                       Activate: hold left thumb MO(2)
 ───────────────────────────
 ┌──────┬──────┬──────┬──────┬──────┬──────┐   ┌──────┬──────┬──────┬──────┬──────┬──────┐
-│  ▽   │  `   │  ~   │  +   │  =   │  \   │   │  |   │  -   │  _   │  [   │  ]   │  ▽   │
+│  ▽   │  `   │  ~   │  \   │  |   │  ∅   │   │  ∅   │  -   │  _   │  +   │  =   │  ▽   │
 ├──────┼──────┼──────┼──────┼──────┼──────┤   ├──────┼──────┼──────┼──────┼──────┼──────┤
-│  ▽   │  !   │  @   │  #   │  $   │  %   │   │  ^   │  &   │  *   │  (   │  )   │  ▽   │
+│  ▽   │  !   │  @   │  #   │  $   │  %   │   │  ^   │  &   │  *   │  '   │  "   │  ▽   │
 ├──────┼──────┼──────┼──────┼──────┼──────┤   ├──────┼──────┼──────┼──────┼──────┼──────┤
 │  ▽   │  ▽   │  ▽   │  ▽   │  ▽   │  ▽   │   │  ▽   │  ▽   │  ▽   │  ▽   │  ▽   │  ▽   │
 │      │ Shift│ Ctrl │ Alt  │ Gui  │      │   │      │ Gui  │ Alt  │ Ctrl │ Shift│      │
 └──────┴──────┴──────┼──────┼──────┼──────┤   ├──────┼──────┼──────┼──────┴──────┴──────┘
                      │  ▽   │ ░░░░ │  ▽   │   │  ▽   │  ▽   │  ▽   │
                      └──────┴──────┴──────┘   └──────┴──────┴──────┘
-            < and > are now Shift+, and Shift+. on the base layer
+                              ∅ = no-op · < and > live on Layer 1 home
 
 
 Layer 3 — Function Keys (Green)                    Activate: MO(1) + MO(3) or MO(4) + MO(3)
@@ -57,12 +57,12 @@ Layer 3 — Function Keys (Green)                    Activate: MO(1) + MO(3) or 
 ├──────┼──────┼──────┼──────┼──────┼──────┤   ├──────┼──────┼──────┼──────┼──────┼──────┤
 │  ▽   │ F11  │ F12  │ F13  │ F14  │ F15  │   │ F16  │ F17  │ F18  │ F19  │ F20  │  ▽   │
 ├──────┼──────┼──────┼──────┼──────┼──────┤   ├──────┼──────┼──────┼──────┼──────┼──────┤
-│  ▽   │  ▽   │  ▽   │  ▽   │  ▽   │  ▽   │   │  ▽   │  ▽   │  ▽   │  ▽   │DF(5) │  ▽   │
-│      │ Shift│ Ctrl │ Alt  │ Gui  │      │   │      │ Gui  │ Alt  │ Ctrl │      │      │
+│  ▽   │  ▽   │  ▽   │  ▽   │  ▽   │  ▽   │   │DF(5) │  ▽   │  ▽   │  ▽   │  ▽   │  ▽   │
+│      │ Shift│ Ctrl │ Alt  │ Gui  │      │   │      │ Gui  │ Alt  │ Ctrl │ Shift│      │
 └──────┴──────┴──────┼──────┼──────┼──────┤   ├──────┼──────┼──────┼──────┴──────┴──────┘
                      │  ▽   │  ▽   │  ▽   │   │  ▽   │  ▽   │  ▽   │
                      └──────┴──────┴──────┘   └──────┴──────┴──────┘
-                                       DF(5) = switch to RGB layer (right pinky, bottom row)
+                                  DF(5) = switch to RGB layer (right index, bottom row)
 
 
 Layer 4 — Navigation (Orange)                      Activate: hold right thumb MO(4)
@@ -114,7 +114,7 @@ Only the hue changes per layer.
 ──────────────────────────────
 Goal: drop the outer pinky column on each side (3x6+3 → 3x5+3).
 Outer-column base keys are already re-homed so nothing is stranded:
-  Tab, Esc → Layer 1   ·   \ → Layer 2   ·   ' / " → Layer 1
+  Tab, Esc → Layer 1   ·   \ → Layer 2   ·   ' and " → Layer 2
   Left/Right Shift → bottom-row mod-taps on Z and /
 Layers 1–4 are now clear of the outer columns.
 Still to relocate before switching to LAYOUT_split_3x5_3:

@@ -48,17 +48,32 @@ archive/
 ## Build & Flash
 
 ### Corne (active) — `corne-wired/`
-1. Edit `corne-wired/keymap.json` in the [QMK Configurator](https://config.qmk.fm/) or by hand
-2. Convert: `qmk json2c corne-wired/keymap.json > corne-wired/keymap.c`
-3. Add custom code (per-layer RGB) back to `keymap.c` — only replace the `keymaps[]` array, preserve the RGB code below it
-4. Copy to QMK: `cp corne-wired/{keymap.c,config.h,rules.mk} ~/qmk_firmware/keyboards/crkbd/keymaps/kiron_corne/`
-5. Compile: `cd ~/qmk_firmware && make crkbd/rev1:kiron_corne`
-6. Copy hex back: `cp ~/qmk_firmware/crkbd_rev1_kiron_corne.hex corne-wired/firmware.hex`
-7. Flash: avrdude with `-p atmega32u4 -c avr109 -b 57600` on `/dev/cu.usbmodem*` (macOS) or run `corne-wired/flash-corne-linux.sh` (Linux)
-8. Must use `/dev/cu.usbmodem*` (not `/dev/tty.usbmodem*`) on macOS
-9. Short RST+GND on Pro Micro for bootloader (~8 second window)
 
-See `README.md` for the full step-by-step walkthrough and UG_→RGB_ keycode notes.
+**`keymap.c` is the source of truth** — edit the `keymaps[]` array by hand
+(use `layout.txt`/`layout.pdf` as the position map; each layer is exactly 42
+keys in `LAYOUT_split_3x6_3` order). The per-layer RGB code lives only below the
+array in `keymap.c`, so do NOT round-trip through `qmk json2c` (it regenerates
+the whole file and wipes that code). Keep `keymap.json` (the QMK Configurator
+export) and `layout.txt`/`layout.pdf` in sync by hand after editing.
+
+**Toolchain note:** `avr-gcc@8` is keg-only; it must be on `PATH`
+(`export PATH="/opt/homebrew/opt/avr-gcc@8/bin:$PATH"`, added to `~/.zshrc`).
+The qmk CLI is a pipx install at `~/.local/bin/qmk`.
+
+Build + flash on macOS — `corne-wired/build-and-flash-mac.sh`:
+- `./build-and-flash-mac.sh` — copies `keymap.c`/`config.h`/`rules.mk` into the
+  QMK tree, runs `qmk compile -kb crkbd/rev1 -km kiron_corne`, copies the hex
+  back to `firmware.hex`.
+- `./build-and-flash-mac.sh --flash` — after building, watches for the
+  Caterina bootloader port and flashes ONE half. Run it once per half (left,
+  then right), each plugged **directly into USB** (TRRS can't carry the
+  programming signal). avrdude args: `-p atmega32u4 -c avr109 -b 57600 -D`.
+- Bootloader: short RST+GND on the Pro Micro (~8s window). Must use
+  `/dev/cu.usbmodem*` (not `/dev/tty.usbmodem*`). The script auto-detects it.
+
+Manual fallback / Linux: `cd ~/qmk_firmware && make crkbd/rev1:kiron_corne`, then
+`corne-wired/flash-corne-linux.sh`. See `README.md` for the full walkthrough and
+UG_→RGB_ keycode notes.
 
 ### YIVU Corne 4.1 (owned) — `archive/yivu-corne-4.1/`
 No firmware flashing — the layout is managed **live via Vial**. `kiron-layout.vil`
