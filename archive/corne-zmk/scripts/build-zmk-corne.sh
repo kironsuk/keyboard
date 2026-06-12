@@ -3,9 +3,9 @@ set -euo pipefail
 
 repo_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 
-CONFIG_DIR="${CONFIG_DIR:-corne4.1Bluetooth}"
+CONFIG_DIR="${CONFIG_DIR:-config}"
 BOARD="${BOARD:-nice_nano}"
-OUT_DIR="${OUT_DIR:-firmware/corne4.1Bluetooth}"
+OUT_DIR="${OUT_DIR:-firmware}"
 SHIELDS="${SHIELDS:-corne_left corne_right}"
 ZMK_DOCKER_IMAGE="${ZMK_DOCKER_IMAGE:-zmkfirmware/zmk-build-arm:stable}"
 ZMK_CACHE_VOLUME="${ZMK_CACHE_VOLUME:-zmk-corne-cache}"

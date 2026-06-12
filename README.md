@@ -2,67 +2,28 @@
 
 Firmware configurations for custom split ergonomic keyboards.
 
-## Directory Structure
+The **wired Corne** (`corne-wired/`) is the keyboard currently in active use and is
+the focus of this README. Other keyboards Kiron owns or has configured live under
+[`archive/`](archive/) — see [`archive/README.md`](archive/README.md).
 
 ```
 keyboard/
-  build.yaml           ZMK GitHub Actions build matrix for Bluetooth Corne
-  corne4.1Bluetooth/  ZMK user config for Bluetooth Corne 4.1
-    corne.keymap         Kiron's Corne layout ported to ZMK, no lighting layer
-    corne.conf           ZMK keyboard name and sleep settings
-    west.yml             ZMK manifest
-  corne/              # Corne (crkbd/rev1) - compact 3x6+3 split
-    keymap.json         Source of truth (QMK Configurator JSON)
-    keymap.c            Compiled C keymap with per-layer RGB colors
-    config.h            RGBLIGHT, split keyboard config
-    rules.mk            Build flags
-    firmware.hex        Latest compiled firmware
-    layout.txt          ASCII layout reference for all layers
-    layout.pdf          Visual layout reference
-  moonlander/         # ZSA Moonlander - larger split ergonomic
-    source/
-      keymap.c          Keymap with tap dance and RGB matrix
-      config.h          Timing/feature config
-      rules.mk          Build flags
-    firmware.bin        Latest compiled firmware
-    layout.pdf          Visual layout reference
-    README.md           ZSA's build instructions
+  corne-wired/          # ACTIVE — Corne crkbd/rev1, Pro Micro, QMK
+    keymap.json           Source of truth (QMK Configurator JSON)
+    keymap.c              Compiled C keymap with per-layer RGB colors
+    config.h              RGBLIGHT, split keyboard config
+    rules.mk              Build flags
+    firmware.hex          Latest compiled firmware
+    layout.txt            ASCII layout reference for all layers
+    layout.pdf            Visual layout reference
+    flash-corne-linux.sh  Linux flash helper (avrdude)
+  archive/              # Not in active use — see archive/README.md
+    corne-zmk/            Future nice!nano Corne (ZMK), self-contained
+    yivu-corne-4.1/       YIVU wireless Corne Kiron owns (Vial backup)
+    moonlander/           ZSA Moonlander QMK config
 ```
 
-## Bluetooth Corne 4.1 / ZMK
-
-The Bluetooth Corne config lives in `corne4.1Bluetooth/` and is built by the root
-`build.yaml` plus `.github/workflows/zmk-build.yml`.
-
-Build targets:
-
-| Board | Shield | Output |
-|-------|--------|--------|
-| nice_nano | corne_left | Left half UF2 |
-| nice_nano | corne_right | Right half UF2 |
-
-The keymap keeps the standard Corne layout minus the lighting layer:
-
-| Layer | Purpose | Activate |
-|-------|---------|----------|
-| 0 | Base QWERTY with bottom row mods | Default |
-| 1 | Numbers on top and home rows | Hold left thumb NUM |
-| 2 | Symbols | Hold left thumb SYM |
-| 3 | Function keys and bootloader | NUM+FN or NAV+FN |
-| 4 | Navigation and Bluetooth profile controls | Hold right thumb NAV |
-
-Notes:
-
-- There is no RGB/backlight layer.
-- The nav layer top row has Bluetooth controls: clear bonds, select profiles 0-4,
-  toggle USB/Bluetooth output, previous/next profile, and output battery percent.
-- The stock ZMK Corne shield has 42 key positions. If a Corne 4.1 vendor shield exposes extra physical keys, leave those positions as `&none`.
-
-To build, push this repo to GitHub and run the `zmk-build` workflow, then
-download the `firmware` artifact. Flash each half by putting it into bootloader
-mode and copying the matching UF2 file to the mounted drive.
-
-## Wired QMK Corne Layout
+## Wired Corne Layout
 
 6 layers, bottom row mods. Hold a bottom row key for the modifier, tap for the letter.
 
@@ -88,27 +49,27 @@ Bottom row mod-taps (Layer 0):
 | Right 4 | . | Ctrl |
 | Right 5 | / | Shift |
 
-See `corne/layout.txt` for the full visual layout of every layer.
+See `corne-wired/layout.txt` for the full visual layout of every layer.
 
 RGB settings (brightness, saturation, effects) persist across all layers — only the hue changes per layer.
 
-## Making Changes to the Wired QMK Corne Keymap
+## Making Changes to the Wired Corne Keymap
 
 ### Quick reference
 
 ```bash
 # 1. Edit the keymap JSON (in QMK Configurator or by hand)
-#    Save the export to corne/keymap.json
+#    Save the export to corne-wired/keymap.json
 
 # 2. Update keymap.c with the new layer definitions
 #    (keep the RGB color code at the bottom of keymap.c unchanged)
 
 # 3. Copy files to QMK and compile
-cp corne/{keymap.c,config.h,rules.mk} ~/qmk_firmware/keyboards/crkbd/keymaps/kiron_corne/
+cp corne-wired/{keymap.c,config.h,rules.mk} ~/qmk_firmware/keyboards/crkbd/keymaps/kiron_corne/
 cd ~/qmk_firmware && make crkbd/rev1:kiron_corne
 
 # 4. Copy the compiled hex back to the repo
-cp ~/qmk_firmware/crkbd_rev1_kiron_corne.hex corne/firmware.hex
+cp ~/qmk_firmware/crkbd_rev1_kiron_corne.hex corne-wired/firmware.hex
 
 # 5. Flash both halves (run once per half)
 while true; do
@@ -116,7 +77,7 @@ while true; do
   if [ -n "$PORT" ]; then
     sleep 1
     avrdude -p atmega32u4 -c avr109 -b 57600 -D -P "$PORT" \
-      -U flash:w:corne/firmware.hex:i
+      -U flash:w:corne-wired/firmware.hex:i
     break
   fi
   sleep 0.2
@@ -129,11 +90,11 @@ done
 
 #### 1. Edit the keymap
 
-Edit `corne/keymap.json` in the [QMK Configurator](https://config.qmk.fm/) (import the file, make changes, export) or edit the JSON by hand.
+Edit `corne-wired/keymap.json` in the [QMK Configurator](https://config.qmk.fm/) (import the file, make changes, export) or edit the JSON by hand.
 
 #### 2. Update keymap.c
 
-The JSON only defines key assignments. `corne/keymap.c` also contains custom C code for per-layer RGB colors that must be preserved. When updating `keymap.c`:
+The JSON only defines key assignments. `corne-wired/keymap.c` also contains custom C code for per-layer RGB colors that must be preserved. When updating `keymap.c`:
 
 - Replace only the `keymaps[]` array (layers 0-5) with the new key definitions
 - Keep everything below the array unchanged (the `layer_hues[]`, `set_layer_color()`, `keyboard_post_init_user()`, `layer_state_set_user()` functions)
@@ -148,7 +109,7 @@ The JSON only defines key assignments. `corne/keymap.c` also contains custom C c
 #### 3. Compile
 
 ```bash
-cp corne/{keymap.c,config.h,rules.mk} ~/qmk_firmware/keyboards/crkbd/keymaps/kiron_corne/
+cp corne-wired/{keymap.c,config.h,rules.mk} ~/qmk_firmware/keyboards/crkbd/keymaps/kiron_corne/
 cd ~/qmk_firmware
 make crkbd/rev1:kiron_corne
 ```
@@ -156,7 +117,7 @@ make crkbd/rev1:kiron_corne
 The compiled hex lands at `~/qmk_firmware/crkbd_rev1_kiron_corne.hex`. Copy it back:
 
 ```bash
-cp ~/qmk_firmware/crkbd_rev1_kiron_corne.hex corne/firmware.hex
+cp ~/qmk_firmware/crkbd_rev1_kiron_corne.hex corne-wired/firmware.hex
 ```
 
 #### 4. Flash
@@ -170,7 +131,7 @@ while true; do
   if [ -n "$PORT" ]; then
     sleep 1
     avrdude -p atmega32u4 -c avr109 -b 57600 -D -P "$PORT" \
-      -U flash:w:corne/firmware.hex:i
+      -U flash:w:corne-wired/firmware.hex:i
     break
   fi
   sleep 0.2
@@ -179,6 +140,8 @@ done
 2. Short the RST and GND pins on the Pro Micro to enter bootloader mode. You have about 8 seconds before it times out.
 3. Wait for "avrdude done" confirmation, then repeat for the other half.
 
+On Linux, `corne-wired/flash-corne-linux.sh` automates the same flow against `/dev/ttyACM*`.
+
 **Important notes:**
 - Use `/dev/cu.usbmodem*` (not `/dev/tty.usbmodem*`) on macOS
 - The 1-second sleep after port detection is necessary for the port to stabilize
@@ -186,7 +149,7 @@ done
 
 #### 5. Update layout.txt
 
-After changing the keymap, update `corne/layout.txt` to keep the visual reference in sync.
+After changing the keymap, update `corne-wired/layout.txt` to keep the visual reference in sync.
 
 ### Prerequisites
 
@@ -198,16 +161,7 @@ After changing the keymap, update `corne/layout.txt` to keep the visual referenc
   ```
 - Run `qmk doctor` to verify your environment is ready
 
-## Moonlander
+## Other keyboards
 
-Built against [ZSA's QMK fork](https://github.com/zsa/qmk_firmware/) (not upstream).
-
-```bash
-cp moonlander/source/* ~/qmk_firmware/keyboards/moonlander/keymaps/kiron/
-cd ~/qmk_firmware
-make moonlander:kiron
-```
-
-Flash the `.bin` file using [Wally](https://configure.zsa.io/wally) or QMK Toolbox.
-
-Original Oryx layout: https://configure.zsa.io/moonlander/layouts/65yQL/WOAdM/0
+The Moonlander, the YIVU wireless Corne, and the future-nice!nano ZMK Corne configs
+live under [`archive/`](archive/), each with its own README.

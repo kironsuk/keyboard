@@ -8,4 +8,4 @@ manifest:
       revision: main
       import: app/west.yml
   self:
-    path: corne4.1Bluetooth
+    path: config

@@ -3,7 +3,7 @@ set -euo pipefail
 
 cd "$(dirname "$0")"
 
-FIRMWARE="corne/firmware.hex"
+FIRMWARE="firmware.hex"
 
 if ! command -v avrdude >/dev/null 2>&1; then
   echo "avrdude is not installed. Install it with: sudo apt-get install avrdude" >&2
