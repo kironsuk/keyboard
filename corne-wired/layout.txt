@@ -25,7 +25,7 @@ Layer 1 — Numbers (Blue)                          Activate: hold left thumb MO
 ┌──────┬──────┬──────┬──────┬──────┬──────┐   ┌──────┬──────┬──────┬──────┬──────┬──────┐
 │  ▽   │  1   │  2   │  3   │  4   │  5   │   │  6   │  7   │  8   │  9   │  0   │  ▽   │
 ├──────┼──────┼──────┼──────┼──────┼──────┤   ├──────┼──────┼──────┼──────┼──────┼──────┤
-│  ▽   │  1   │  2   │  3   │  4   │  5   │   │  6   │  7   │  8   │  9   │  0   │  ▽   │
+│  ▽   │ Esc  │ Tab  │  ∅   │  ∅   │  ∅   │   │  ∅   │  {   │  }   │  '   │  "   │  ▽   │
 ├──────┼──────┼──────┼──────┼──────┼──────┤   ├──────┼──────┼──────┼──────┼──────┼──────┤
 │  ▽   │  ▽   │  ▽   │  ▽   │  ▽   │  ▽   │   │  ▽   │  ▽   │  ▽   │  ▽   │  ▽   │  ▽   │
 │      │ Shift│ Ctrl │ Alt  │ Gui  │      │   │      │ Gui  │ Alt  │ Ctrl │ Shift│      │
@@ -38,30 +38,31 @@ Layer 1 — Numbers (Blue)                          Activate: hold left thumb MO
 Layer 2 — Symbols (Magenta)                       Activate: hold left thumb MO(2)
 ───────────────────────────
 ┌──────┬──────┬──────┬──────┬──────┬──────┐   ┌──────┬──────┬──────┬──────┬──────┬──────┐
-│  ▽   │  `   │  {   │  }   │  <   │  >   │   │  |   │  -   │  +   │  (   │  )   │  \   │
+│  ▽   │  `   │  ~   │  +   │  =   │  \   │   │  |   │  -   │  _   │  [   │  ]   │  ▽   │
 ├──────┼──────┼──────┼──────┼──────┼──────┤   ├──────┼──────┼──────┼──────┼──────┼──────┤
-│  ▽   │  !   │  @   │  #   │  $   │  %   │   │  ^   │  &   │  *   │  [   │  ]   │  =   │
+│  ▽   │  !   │  @   │  #   │  $   │  %   │   │  ^   │  &   │  *   │  (   │  )   │  ▽   │
 ├──────┼──────┼──────┼──────┼──────┼──────┤   ├──────┼──────┼──────┼──────┼──────┼──────┤
 │  ▽   │  ▽   │  ▽   │  ▽   │  ▽   │  ▽   │   │  ▽   │  ▽   │  ▽   │  ▽   │  ▽   │  ▽   │
 │      │ Shift│ Ctrl │ Alt  │ Gui  │      │   │      │ Gui  │ Alt  │ Ctrl │ Shift│      │
 └──────┴──────┴──────┼──────┼──────┼──────┤   ├──────┼──────┼──────┼──────┴──────┴──────┘
                      │  ▽   │ ░░░░ │  ▽   │   │  ▽   │  ▽   │  ▽   │
                      └──────┴──────┴──────┘   └──────┴──────┴──────┘
+            < and > are now Shift+, and Shift+. on the base layer
 
 
 Layer 3 — Function Keys (Green)                    Activate: MO(1) + MO(3) or MO(4) + MO(3)
 ───────────────────────────────
 ┌──────┬──────┬──────┬──────┬──────┬──────┐   ┌──────┬──────┬──────┬──────┬──────┬──────┐
-│  ▽   │  F1  │  F2  │  F3  │  F4  │  F5  │   │  F6  │  F7  │  F8  │  F9  │ F10  │DF(5) │
+│  ▽   │  F1  │  F2  │  F3  │  F4  │  F5  │   │  F6  │  F7  │  F8  │  F9  │ F10  │  ▽   │
 ├──────┼──────┼──────┼──────┼──────┼──────┤   ├──────┼──────┼──────┼──────┼──────┼──────┤
 │  ▽   │ F11  │ F12  │ F13  │ F14  │ F15  │   │ F16  │ F17  │ F18  │ F19  │ F20  │  ▽   │
 ├──────┼──────┼──────┼──────┼──────┼──────┤   ├──────┼──────┼──────┼──────┼──────┼──────┤
-│  ▽   │  ▽   │  ▽   │  ▽   │  ▽   │  ▽   │   │  ▽   │  ▽   │  ▽   │  ▽   │  ▽   │  ▽   │
-│      │ Shift│ Ctrl │ Alt  │ Gui  │      │   │      │ Gui  │ Alt  │ Ctrl │ Shift│      │
+│  ▽   │  ▽   │  ▽   │  ▽   │  ▽   │  ▽   │   │  ▽   │  ▽   │  ▽   │  ▽   │DF(5) │  ▽   │
+│      │ Shift│ Ctrl │ Alt  │ Gui  │      │   │      │ Gui  │ Alt  │ Ctrl │      │      │
 └──────┴──────┴──────┼──────┼──────┼──────┤   ├──────┼──────┼──────┼──────┴──────┴──────┘
                      │  ▽   │  ▽   │  ▽   │   │  ▽   │  ▽   │  ▽   │
                      └──────┴──────┴──────┘   └──────┴──────┴──────┘
-                                                          DF(5) = switch to RGB layer
+                                       DF(5) = switch to RGB layer (right pinky, bottom row)
 
 
 Layer 4 — Navigation (Orange)                      Activate: hold right thumb MO(4)
@@ -82,7 +83,7 @@ Layer 4 — Navigation (Orange)                      Activate: hold right thumb 
 Layer 5 — RGB Controls (Red)                       Activate: DF(5) from Layer 3
 ────────────────────────────
 ┌──────┬──────┬──────┬──────┬──────┬──────┐   ┌──────┬──────┬──────┬──────┬──────┬──────┐
-│ BOOT │      │      │      │      │      │   │      │      │      │      │      │  ▽   │
+│      │ BOOT │      │      │      │      │   │      │      │      │      │      │  ▽   │
 ├──────┼──────┼──────┼──────┼──────┼──────┤   ├──────┼──────┼──────┼──────┼──────┼──────┤
 │ Tog  │ Mode+│ Hue+ │ Sat+ │ Brt+ │ Spd+ │   │Plain │Breath│Rainbw│Knight│ Grad │Twinkl│
 ├──────┼──────┼──────┼──────┼──────┼──────┤   ├──────┼──────┼──────┼──────┼──────┼──────┤
@@ -90,12 +91,13 @@ Layer 5 — RGB Controls (Red)                       Activate: DF(5) from Layer 
 └──────┴──────┴──────┼──────┼──────┼──────┤   ├──────┼──────┼──────┼──────┴──────┴──────┘
                      │DF(0) │DF(0) │DF(0) │   │      │      │      │
                      └──────┴──────┴──────┘   └──────┴──────┴──────┘
-              All three thumbs return to base layer
+              All three left thumbs return to base layer
 
 
 Legend
 ──────
 ▽  = transparent (falls through to layer below)
+∅  = no-op (dead key, nothing happens)
 ░░ = layer is active from this key (held)
 Brt = brightness (value)   Sat = saturation   Spd = speed
 BOOT = enter bootloader for flashing
@@ -106,3 +108,15 @@ On transparent layers, bottom row mods fall through from Layer 0.
 
 RGB settings (brightness, saturation, effects) persist across all layers.
 Only the hue changes per layer.
+
+
+36-key migration (in progress)
+──────────────────────────────
+Goal: drop the outer pinky column on each side (3x6+3 → 3x5+3).
+Outer-column base keys are already re-homed so nothing is stranded:
+  Tab, Esc → Layer 1   ·   \ → Layer 2   ·   ' / " → Layer 1
+  Left/Right Shift → bottom-row mod-taps on Z and /
+Layers 1–4 are now clear of the outer columns.
+Still to relocate before switching to LAYOUT_split_3x5_3:
+  Layer 5 — RGB Toggle (outer-left home) and Twinkle effect (outer-right home).
+  Base layer outer columns (rebuilt when the macro changes).
