@@ -28,7 +28,8 @@ corne-wired/            ACTIVE — Corne crkbd/rev1 (QMK)
   rules.mk                Build flags (RGBLIGHT_ENABLE=yes)
   firmware.hex            Latest compiled firmware
   layout.txt              ASCII visual reference for all layers
-  layout.pdf              Visual layout reference
+  layout.pdf              Visual layout reference (generated — see below)
+  gen-layout-pdf.py       Regenerates layout.pdf via headless Chrome
   flash-corne-linux.sh    Linux flash helper (avrdude on /dev/ttyACM*)
 archive/
   README.md               Index of archived keyboards
@@ -54,7 +55,13 @@ archive/
 keys in `LAYOUT_split_3x6_3` order). The per-layer RGB code lives only below the
 array in `keymap.c`, so do NOT round-trip through `qmk json2c` (it regenerates
 the whole file and wipes that code). Keep `keymap.json` (the QMK Configurator
-export) and `layout.txt`/`layout.pdf` in sync by hand after editing.
+export) and `layout.txt` in sync by hand after editing.
+
+**`layout.pdf` is generated, not hand-maintained.** After editing the keymap,
+update the layer data in `corne-wired/gen-layout-pdf.py` to match, then run
+`python3 corne-wired/gen-layout-pdf.py` to regenerate `layout.pdf`. The script
+renders an HTML grid and uses headless Google Chrome (`--print-to-pdf`) to
+produce the 2-page PDF — so Chrome (or Chromium) must be installed.
 
 **Toolchain note:** `avr-gcc@8` is keg-only; it must be on `PATH`
 (`export PATH="/opt/homebrew/opt/avr-gcc@8/bin:$PATH"`, added to `~/.zshrc`).
