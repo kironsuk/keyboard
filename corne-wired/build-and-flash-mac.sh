@@ -40,7 +40,9 @@ echo
 echo "==> FLASH MODE — plug ONE half directly into USB."
 BASELINE="$(ls /dev/cu.usbmodem* 2>/dev/null | sort -u || true)"
 echo "    Current ports: ${BASELINE:-<none>}"
-echo "    Short RST+GND on that half now (waiting up to 120s)..."
+echo "    Enter the bootloader now (waiting up to 120s):"
+echo "      - Bootmagic (preferred): hold the top outer-corner key WHILE plugging in."
+echo "      - Or short RST+GND on that half."
 for _ in $(seq 1 1200); do
   CUR="$(ls /dev/cu.usbmodem* 2>/dev/null | sort -u || true)"
   NEW="$(comm -13 <(printf '%s\n' "$BASELINE") <(printf '%s\n' "$CUR") | grep -v '^$' | head -n1 || true)"

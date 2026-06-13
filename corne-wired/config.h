@@ -3,6 +3,13 @@
 #define MASTER_LEFT
 #define SPLIT_USB_DETECT
 
+// Bootmagic Lite: hold the top outer-corner key (matrix 0,0 — where Tab is on
+// the left half) while plugging a half into USB to jump straight into the
+// bootloader. No need to short RST+GND. Works on either physical half because
+// MASTER_LEFT + SPLIT_USB_DETECT make a solo-connected half act as the left.
+#define BOOTMAGIC_LITE_ROW 0
+#define BOOTMAGIC_LITE_COLUMN 0
+
 #ifdef RGBLIGHT_ENABLE
     #define RGBLIGHT_EFFECT_BREATHING
     #define RGBLIGHT_EFFECT_RAINBOW_MOOD
